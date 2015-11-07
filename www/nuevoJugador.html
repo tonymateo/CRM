@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <link rel="stylesheet" type="text/css" href="./tema/themes/jquery.mobile.icons.min.css" />   
+    <link rel="stylesheet" type="text/css" href="jq/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/personalizado.css" />
+    <link rel="stylesheet" type="text/css" href="./tema/themes/tema.css" />
+    <link rel="stylesheet" type="text/css" href="./tema/themes/tema.min.css" />
+</head>
+<body>
+    
+<div data-role="page">
+<div data-role="header">
+<h1>Nuevo Jugador</h1>
+  </div>
+  <div data-role="main" class="ui-content">
+    <form method="post" action="demoform.asp">
+      <div>
+      <label for="foto" style="text-transform: capitalize;">Seleccione una foto de perfil:</label>
+      <input type="file" name="img">
+      </div>
+      <div>
+        <label for="info" style="text-transform: capitalize;">Nombre:</label>
+        <textarea name="datoNombre" id="nombre" placeholder="Nombre"></textarea>
+      </div>
+
+      <div>
+        <label for="info" style="text-transform: capitalize;">Apellidos:</label>
+        <textarea name="datApellido" id="apellido" placeholder="Apellidos"></textarea>
+      </div>
+
+      <div>
+        <label for="info" style="text-transform: capitalize;">Equipo:</label>
+        <textarea name="datoEquipo" id="equipo" placeholder="Equipo"></textarea>
+      </div>
+
+      <div>
+        <label for="info" style="text-transform: capitalize;">Edad:</label>
+        <textarea name="datoEdad" id="edad" placeholder="Edad"></textarea>
+      </div>
+
+      <div>
+        <label for="info" style="text-transform: capitalize;">E-mail:</label>
+        <textarea name="datoEmail" id="email" placeholder="E-mail"></textarea>
+      </div>
+
+      <div>
+        <label for="info" style="text-transform: capitalize;">Localidad:</label>
+        <textarea name="datoLocalidad" id="localidad" placeholder="Localidad"></textarea>
+      </div>
+
+      <input type="submit" data-inline="true" value="Enviar">
+    </form> 
+
+    <div class="volverEnEnviar">
+    <p>Volver a la lista</p>
+    <a href="index.html">
+        <img class="flechaAlante" src=".\img\flechaAtras.jpg">
+    </a>
+    </div>
+
+  </div>
+</div>
+      <script type="text/javascript" src="jq/jquery-1.11.3.js"></script>
+      <script src="jq/jquery.mobile-1.4.5.min.js"></script>
+      
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
