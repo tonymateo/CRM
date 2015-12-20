@@ -16,18 +16,61 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+var cargarDB = {
+    db:"",
+    initialize:function(){
+        console.log("iniciando");
+        //creamos un enlace con la base de datos
+        //openDatabase(nombre de la base de datos,version,descriptivo,tamaño estimado)
+        this.db=window.openDatabase("localDB","1.0","Base de datos CRM",2*1024*1024);
+        this.createConexDB();
+    },
+    createConexDB:function(){
+        console.log("Cargamos la base de datos");
+        this.db.transaction(this.cargarLocalDB, this.createDBError);
+    },
+    cargarLocalDB:function(tx){
+        var sql="SELECT * FROM localDB;";
+        console.log("Lanzando el select a la tabla localDB");
+        tx.executeSql(
+            sql,
+            [],
+            //funcion de que se ha realizado la consulta bien
+            function(tx,result){
+                console.log("Se ha realizado la consulta con exito");
+                if(result.rows.length>0){
+                    for(var i=0;i<result.rows.length;i++){
+                        var fila=result.rows.item(i);
+                        console.log("ROW "+1+" Nombre: "+fila.nombre);
+                        $("#listaJugadores ul").append("<li>"+fila.nombre+"</li>").listview("refresh");
+                        console.log("Despues de meter el dato en la nueva pagina");
+                    }
+                }
+            },
+            //funcion de que no funciona
+            function(tx,error){
+                this.createDBError(error);
+            }
+            );
+    },
+    createDBError:function(err){
+        console.log("Se ha producido un error en la creacion de la base de datos: "+err.code);
+        console.log("Mensaje de error: "+err.message);
+    }
+};
+
 var confDB = {
     db:"",
     existe_db:"",
     initialize:function(){
         //variable existe db
-        existe_db=window.localStorage.getItem("bd_creada");
+        existe_db=window.localStorage.getItem("existe_db");
         //creamos un enlace con la base de datos
         //openDatabase(nombre de la base de datos,version,descriptivo,tamaño estimado)
         this.db=window.openDatabase("localDB","1.0","Base de datos CRM",2*1024*1024);
 
         if(existe_db==null){
-            //console.log("No existe base de datos");
+            //No existe base de datos
             this.createDB();
             navigator.notification.confirm(
                 'La base de datos no esta creada',
@@ -37,11 +80,12 @@ var confDB = {
               );
         }else{
             //Base de datos creada
+            cargarDB.initialize();
+            console.log("Estoy haciendo el else de confDB");
         }
     },
     onConfirm:function(buttonIndex){
         if(buttonIndex==1){
-          window.localStorage.setItem("bd_creada",1);
           this.createDB();
         }
     },
@@ -73,6 +117,7 @@ var confDB = {
     createDBSucc:function(){
         console.log("Se ha generado la base de datos con éxito");
         window.localStorage.setItem("existe_db",1);
+        cargarDB.initialize();
     }
 };
 

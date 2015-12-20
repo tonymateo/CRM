@@ -23,5 +23,5 @@ if (!document.querySelector('meta[http-equiv=Content-Security-Policy]')) {
     console.error(msg);
     setInterval(function() {
         console.warn(msg);
-    }, 10000);
+    }, 90000);
 }

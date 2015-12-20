@@ -28,6 +28,11 @@
     right: 2%;
     bottom: 2%;
 }
+.paginaDatos{
+    position: absolute;
+    left: 2%;
+    bottom: 2%;
+}
 
 .volver{
     position: absolute;
